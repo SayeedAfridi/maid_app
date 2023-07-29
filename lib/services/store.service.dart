@@ -3,10 +3,10 @@ import 'package:maid/constants/store.constant.dart';
 import 'package:maid/models/application_models.dart';
 
 class StoreService {
-  late int _currentCycleValue;
-  late int _nextCycleValue;
-  late String _currentCycleName;
-  late String _nextCycleName;
+  int _currentCycleValue = 1;
+  int _nextCycleValue = 2;
+  String _currentCycleName = 'cycle-1';
+  String _nextCycleName = 'cycle-2';
   late FirebaseFirestore _db;
   late CollectionReference _attendanceRef;
 
@@ -15,12 +15,10 @@ class StoreService {
   int get nextCycleValue => _nextCycleValue;
   String get nextCycleName => _nextCycleName;
 
-  StoreService() {
+  Future<void> init() async {
     _db = FirebaseFirestore.instance;
     _attendanceRef = _db.collection(CollectionPath.attendance);
-  }
 
-  Future<void> init() async {
     final DocumentSnapshot snapshot =
         await _attendanceRef.doc(DocPath.currentCycle).get();
     if (!snapshot.exists) return;
@@ -32,14 +30,14 @@ class StoreService {
     _nextCycleName = data.nextCycleName;
   }
 
-  Future<void> getData() async {
+  Future<Cycle?> getCurrentCycle() async {
     DocumentSnapshot snapshot =
-        await _attendanceRef.doc(DocPath.currentCycle).get();
+        await _attendanceRef.doc(currentCycleName).get();
     if (!snapshot.exists) {
-      print('span not exists');
       return null;
     }
     final data = snapshot.data() as Map<String, dynamic>;
-    print(CurrentCycle.fromJson(data));
+
+    return Cycle.fromJson(data);
   }
 }

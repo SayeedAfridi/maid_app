@@ -226,14 +226,15 @@ Cycle _$CycleFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Cycle {
   @TimestampConverter()
-  DateTime get createdAt =>
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get name =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
-  @TimestampConverter()
-  DateTime get paidAt => throw _privateConstructorUsedError;
   bool get isPaid =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
   @ListTimestampConverter()
   List<DateTime> get dates => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime? get paidAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -247,9 +248,10 @@ abstract class $CycleCopyWith<$Res> {
   @useResult
   $Res call(
       {@TimestampConverter() DateTime createdAt,
-      @TimestampConverter() DateTime paidAt,
+      String name,
       bool isPaid,
-      @ListTimestampConverter() List<DateTime> dates});
+      @ListTimestampConverter() List<DateTime> dates,
+      @TimestampConverter() DateTime? paidAt});
 }
 
 /// @nodoc
@@ -266,19 +268,20 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
   @override
   $Res call({
     Object? createdAt = null,
-    Object? paidAt = null,
+    Object? name = null,
     Object? isPaid = null,
     Object? dates = null,
+    Object? paidAt = freezed,
   }) {
     return _then(_value.copyWith(
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      paidAt: null == paidAt
-          ? _value.paidAt
-          : paidAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       isPaid: null == isPaid
           ? _value.isPaid
           : isPaid // ignore: cast_nullable_to_non_nullable
@@ -287,6 +290,10 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
           ? _value.dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      paidAt: freezed == paidAt
+          ? _value.paidAt
+          : paidAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -299,9 +306,10 @@ abstract class _$$_CycleCopyWith<$Res> implements $CycleCopyWith<$Res> {
   @useResult
   $Res call(
       {@TimestampConverter() DateTime createdAt,
-      @TimestampConverter() DateTime paidAt,
+      String name,
       bool isPaid,
-      @ListTimestampConverter() List<DateTime> dates});
+      @ListTimestampConverter() List<DateTime> dates,
+      @TimestampConverter() DateTime? paidAt});
 }
 
 /// @nodoc
@@ -314,19 +322,20 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
   @override
   $Res call({
     Object? createdAt = null,
-    Object? paidAt = null,
+    Object? name = null,
     Object? isPaid = null,
     Object? dates = null,
+    Object? paidAt = freezed,
   }) {
     return _then(_$_Cycle(
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      paidAt: null == paidAt
-          ? _value.paidAt
-          : paidAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       isPaid: null == isPaid
           ? _value.isPaid
           : isPaid // ignore: cast_nullable_to_non_nullable
@@ -335,6 +344,10 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      paidAt: freezed == paidAt
+          ? _value.paidAt
+          : paidAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -344,9 +357,10 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
 class _$_Cycle implements _Cycle {
   const _$_Cycle(
       {@TimestampConverter() required this.createdAt,
-      @TimestampConverter() required this.paidAt,
+      required this.name,
       required this.isPaid,
-      @ListTimestampConverter() required final List<DateTime> dates})
+      @ListTimestampConverter() required final List<DateTime> dates,
+      @TimestampConverter() this.paidAt})
       : _dates = dates;
 
   factory _$_Cycle.fromJson(Map<String, dynamic> json) =>
@@ -355,10 +369,9 @@ class _$_Cycle implements _Cycle {
   @override
   @TimestampConverter()
   final DateTime createdAt;
-// @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
   @override
-  @TimestampConverter()
-  final DateTime paidAt;
+  final String name;
+// @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
   @override
   final bool isPaid;
 // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
@@ -373,8 +386,12 @@ class _$_Cycle implements _Cycle {
   }
 
   @override
+  @TimestampConverter()
+  final DateTime? paidAt;
+
+  @override
   String toString() {
-    return 'Cycle(createdAt: $createdAt, paidAt: $paidAt, isPaid: $isPaid, dates: $dates)';
+    return 'Cycle(createdAt: $createdAt, name: $name, isPaid: $isPaid, dates: $dates, paidAt: $paidAt)';
   }
 
   @override
@@ -384,15 +401,16 @@ class _$_Cycle implements _Cycle {
             other is _$_Cycle &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.paidAt, paidAt) || other.paidAt == paidAt) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isPaid, isPaid) || other.isPaid == isPaid) &&
-            const DeepCollectionEquality().equals(other._dates, _dates));
+            const DeepCollectionEquality().equals(other._dates, _dates) &&
+            (identical(other.paidAt, paidAt) || other.paidAt == paidAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, createdAt, paidAt, isPaid,
-      const DeepCollectionEquality().hash(_dates));
+  int get hashCode => Object.hash(runtimeType, createdAt, name, isPaid,
+      const DeepCollectionEquality().hash(_dates), paidAt);
 
   @JsonKey(ignore: true)
   @override
@@ -410,25 +428,27 @@ class _$_Cycle implements _Cycle {
 
 abstract class _Cycle implements Cycle {
   const factory _Cycle(
-          {@TimestampConverter() required final DateTime createdAt,
-          @TimestampConverter() required final DateTime paidAt,
-          required final bool isPaid,
-          @ListTimestampConverter() required final List<DateTime> dates}) =
-      _$_Cycle;
+      {@TimestampConverter() required final DateTime createdAt,
+      required final String name,
+      required final bool isPaid,
+      @ListTimestampConverter() required final List<DateTime> dates,
+      @TimestampConverter() final DateTime? paidAt}) = _$_Cycle;
 
   factory _Cycle.fromJson(Map<String, dynamic> json) = _$_Cycle.fromJson;
 
   @override
   @TimestampConverter()
   DateTime get createdAt;
-  @override // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
-  @TimestampConverter()
-  DateTime get paidAt;
   @override
+  String get name;
+  @override // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
   bool get isPaid;
   @override // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
   @ListTimestampConverter()
   List<DateTime> get dates;
+  @override
+  @TimestampConverter()
+  DateTime? get paidAt;
   @override
   @JsonKey(ignore: true)
   _$$_CycleCopyWith<_$_Cycle> get copyWith =>

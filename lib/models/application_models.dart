@@ -25,11 +25,12 @@ class CurrentCycle with _$CurrentCycle {
 class Cycle with _$Cycle {
   const factory Cycle({
     @TimestampConverter() required DateTime createdAt,
+    required String name,
     // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
-    @TimestampConverter() required DateTime paidAt,
     required bool isPaid,
     // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
     @ListTimestampConverter() required List<DateTime> dates,
+    @TimestampConverter() DateTime? paidAt,
   }) = _Cycle;
 
   factory Cycle.fromJson(Map<String, Object?> json) => _$CycleFromJson(json);

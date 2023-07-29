@@ -1,12 +1,13 @@
 import 'package:maid/app/app.bottomsheets.dart';
 import 'package:maid/app/app.dialogs.dart';
 import 'package:maid/app/app.locator.dart';
+import 'package:maid/models/application_models.dart';
 import 'package:maid/services/store.service.dart';
 import 'package:maid/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends FutureViewModel<Cycle?> {
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _store = locator<StoreService>();
@@ -16,7 +17,6 @@ class HomeViewModel extends BaseViewModel {
   int _counter = 0;
 
   void incrementCounter() {
-    _store.getData();
     _counter++;
     rebuildUi();
   }
@@ -36,4 +36,7 @@ class HomeViewModel extends BaseViewModel {
       description: ksHomeBottomSheetDescription,
     );
   }
+
+  @override
+  Future<Cycle?> futureToRun() => _store.getCurrentCycle();
 }

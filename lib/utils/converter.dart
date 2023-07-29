@@ -14,12 +14,12 @@ class TimestampConverter implements JsonConverter<DateTime, Timestamp> {
 }
 
 class ListTimestampConverter
-    implements JsonConverter<List<DateTime>, List<Timestamp>> {
+    implements JsonConverter<List<DateTime>, List<dynamic>> {
   const ListTimestampConverter();
 
   @override
-  List<DateTime> fromJson(List<Timestamp> timestamps) {
-    return timestamps.map((e) => e.toDate()).toList();
+  List<DateTime> fromJson(List<dynamic> timestamps) {
+    return (timestamps).map((e) => (e as Timestamp).toDate()).toList();
   }
 
   @override
