@@ -1,3 +1,4 @@
+import 'package:maid/services/firebase.service.dart';
 import 'package:maid/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:maid/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:maid/ui/views/home/home_view.dart';
@@ -20,6 +21,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
+    Singleton(classType: FirebaseService),
     // @stacked-service
   ],
   bottomsheets: [

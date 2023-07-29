@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "246021485507",
+    "project_id": "ad-maid-app",
+    "storage_bucket": "ad-maid-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246021485507:android:cc83b9bc20d9b34c5c4376",
+        "android_client_info": {
+          "package_name": "dev.afridi1.maid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246021485507-jfq650mt2c338a130142nk7eqe51ujkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAevFqzAk1v7-BUBq_yb1xeujRYfW84bZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246021485507-jfq650mt2c338a130142nk7eqe51ujkp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246021485507-trjukoj9pr7bdhuudfsvm8bdvvp9nc41.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.afridi1.maid"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
