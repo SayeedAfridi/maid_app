@@ -10,11 +10,13 @@ class StartupViewModel extends BaseViewModel {
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
     FlutterNativeSplash.remove();
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
-    // This is where you can make decisions on where your app should navigate when
-    // you have custom startup logic
-
-    _navigationService.replaceWithHomeView();
+    _navigationService.replaceWithHomeView(
+      null,
+      true,
+      null,
+      TransitionsBuilders.fadeIn,
+    );
   }
 }
