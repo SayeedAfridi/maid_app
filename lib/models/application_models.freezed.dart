@@ -1,0 +1,436 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'application_models.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+CurrentCycle _$CurrentCycleFromJson(Map<String, dynamic> json) {
+  return _CurrentCycle.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CurrentCycle {
+  int get currentValue => throw _privateConstructorUsedError;
+  int get nextValue => throw _privateConstructorUsedError;
+  String get currentCycleName => throw _privateConstructorUsedError;
+  String get nextCycleName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CurrentCycleCopyWith<CurrentCycle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CurrentCycleCopyWith<$Res> {
+  factory $CurrentCycleCopyWith(
+          CurrentCycle value, $Res Function(CurrentCycle) then) =
+      _$CurrentCycleCopyWithImpl<$Res, CurrentCycle>;
+  @useResult
+  $Res call(
+      {int currentValue,
+      int nextValue,
+      String currentCycleName,
+      String nextCycleName});
+}
+
+/// @nodoc
+class _$CurrentCycleCopyWithImpl<$Res, $Val extends CurrentCycle>
+    implements $CurrentCycleCopyWith<$Res> {
+  _$CurrentCycleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentValue = null,
+    Object? nextValue = null,
+    Object? currentCycleName = null,
+    Object? nextCycleName = null,
+  }) {
+    return _then(_value.copyWith(
+      currentValue: null == currentValue
+          ? _value.currentValue
+          : currentValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      nextValue: null == nextValue
+          ? _value.nextValue
+          : nextValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentCycleName: null == currentCycleName
+          ? _value.currentCycleName
+          : currentCycleName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nextCycleName: null == nextCycleName
+          ? _value.nextCycleName
+          : nextCycleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CurrentCycleCopyWith<$Res>
+    implements $CurrentCycleCopyWith<$Res> {
+  factory _$$_CurrentCycleCopyWith(
+          _$_CurrentCycle value, $Res Function(_$_CurrentCycle) then) =
+      __$$_CurrentCycleCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int currentValue,
+      int nextValue,
+      String currentCycleName,
+      String nextCycleName});
+}
+
+/// @nodoc
+class __$$_CurrentCycleCopyWithImpl<$Res>
+    extends _$CurrentCycleCopyWithImpl<$Res, _$_CurrentCycle>
+    implements _$$_CurrentCycleCopyWith<$Res> {
+  __$$_CurrentCycleCopyWithImpl(
+      _$_CurrentCycle _value, $Res Function(_$_CurrentCycle) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentValue = null,
+    Object? nextValue = null,
+    Object? currentCycleName = null,
+    Object? nextCycleName = null,
+  }) {
+    return _then(_$_CurrentCycle(
+      currentValue: null == currentValue
+          ? _value.currentValue
+          : currentValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      nextValue: null == nextValue
+          ? _value.nextValue
+          : nextValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentCycleName: null == currentCycleName
+          ? _value.currentCycleName
+          : currentCycleName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nextCycleName: null == nextCycleName
+          ? _value.nextCycleName
+          : nextCycleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CurrentCycle implements _CurrentCycle {
+  const _$_CurrentCycle(
+      {required this.currentValue,
+      required this.nextValue,
+      required this.currentCycleName,
+      required this.nextCycleName});
+
+  factory _$_CurrentCycle.fromJson(Map<String, dynamic> json) =>
+      _$$_CurrentCycleFromJson(json);
+
+  @override
+  final int currentValue;
+  @override
+  final int nextValue;
+  @override
+  final String currentCycleName;
+  @override
+  final String nextCycleName;
+
+  @override
+  String toString() {
+    return 'CurrentCycle(currentValue: $currentValue, nextValue: $nextValue, currentCycleName: $currentCycleName, nextCycleName: $nextCycleName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CurrentCycle &&
+            (identical(other.currentValue, currentValue) ||
+                other.currentValue == currentValue) &&
+            (identical(other.nextValue, nextValue) ||
+                other.nextValue == nextValue) &&
+            (identical(other.currentCycleName, currentCycleName) ||
+                other.currentCycleName == currentCycleName) &&
+            (identical(other.nextCycleName, nextCycleName) ||
+                other.nextCycleName == nextCycleName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, currentValue, nextValue, currentCycleName, nextCycleName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CurrentCycleCopyWith<_$_CurrentCycle> get copyWith =>
+      __$$_CurrentCycleCopyWithImpl<_$_CurrentCycle>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CurrentCycleToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CurrentCycle implements CurrentCycle {
+  const factory _CurrentCycle(
+      {required final int currentValue,
+      required final int nextValue,
+      required final String currentCycleName,
+      required final String nextCycleName}) = _$_CurrentCycle;
+
+  factory _CurrentCycle.fromJson(Map<String, dynamic> json) =
+      _$_CurrentCycle.fromJson;
+
+  @override
+  int get currentValue;
+  @override
+  int get nextValue;
+  @override
+  String get currentCycleName;
+  @override
+  String get nextCycleName;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CurrentCycleCopyWith<_$_CurrentCycle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Cycle _$CycleFromJson(Map<String, dynamic> json) {
+  return _Cycle.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Cycle {
+  @TimestampConverter()
+  DateTime get createdAt =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
+  @TimestampConverter()
+  DateTime get paidAt => throw _privateConstructorUsedError;
+  bool get isPaid =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
+  @ListTimestampConverter()
+  List<DateTime> get dates => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CycleCopyWith<Cycle> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CycleCopyWith<$Res> {
+  factory $CycleCopyWith(Cycle value, $Res Function(Cycle) then) =
+      _$CycleCopyWithImpl<$Res, Cycle>;
+  @useResult
+  $Res call(
+      {@TimestampConverter() DateTime createdAt,
+      @TimestampConverter() DateTime paidAt,
+      bool isPaid,
+      @ListTimestampConverter() List<DateTime> dates});
+}
+
+/// @nodoc
+class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
+    implements $CycleCopyWith<$Res> {
+  _$CycleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createdAt = null,
+    Object? paidAt = null,
+    Object? isPaid = null,
+    Object? dates = null,
+  }) {
+    return _then(_value.copyWith(
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      paidAt: null == paidAt
+          ? _value.paidAt
+          : paidAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isPaid: null == isPaid
+          ? _value.isPaid
+          : isPaid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dates: null == dates
+          ? _value.dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CycleCopyWith<$Res> implements $CycleCopyWith<$Res> {
+  factory _$$_CycleCopyWith(_$_Cycle value, $Res Function(_$_Cycle) then) =
+      __$$_CycleCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@TimestampConverter() DateTime createdAt,
+      @TimestampConverter() DateTime paidAt,
+      bool isPaid,
+      @ListTimestampConverter() List<DateTime> dates});
+}
+
+/// @nodoc
+class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
+    implements _$$_CycleCopyWith<$Res> {
+  __$$_CycleCopyWithImpl(_$_Cycle _value, $Res Function(_$_Cycle) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createdAt = null,
+    Object? paidAt = null,
+    Object? isPaid = null,
+    Object? dates = null,
+  }) {
+    return _then(_$_Cycle(
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      paidAt: null == paidAt
+          ? _value.paidAt
+          : paidAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isPaid: null == isPaid
+          ? _value.isPaid
+          : isPaid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dates: null == dates
+          ? _value._dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Cycle implements _Cycle {
+  const _$_Cycle(
+      {@TimestampConverter() required this.createdAt,
+      @TimestampConverter() required this.paidAt,
+      required this.isPaid,
+      @ListTimestampConverter() required final List<DateTime> dates})
+      : _dates = dates;
+
+  factory _$_Cycle.fromJson(Map<String, dynamic> json) =>
+      _$$_CycleFromJson(json);
+
+  @override
+  @TimestampConverter()
+  final DateTime createdAt;
+// @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
+  @override
+  @TimestampConverter()
+  final DateTime paidAt;
+  @override
+  final bool isPaid;
+// @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
+  final List<DateTime> _dates;
+// @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
+  @override
+  @ListTimestampConverter()
+  List<DateTime> get dates {
+    if (_dates is EqualUnmodifiableListView) return _dates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dates);
+  }
+
+  @override
+  String toString() {
+    return 'Cycle(createdAt: $createdAt, paidAt: $paidAt, isPaid: $isPaid, dates: $dates)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Cycle &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.paidAt, paidAt) || other.paidAt == paidAt) &&
+            (identical(other.isPaid, isPaid) || other.isPaid == isPaid) &&
+            const DeepCollectionEquality().equals(other._dates, _dates));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, createdAt, paidAt, isPaid,
+      const DeepCollectionEquality().hash(_dates));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CycleCopyWith<_$_Cycle> get copyWith =>
+      __$$_CycleCopyWithImpl<_$_Cycle>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CycleToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Cycle implements Cycle {
+  const factory _Cycle(
+          {@TimestampConverter() required final DateTime createdAt,
+          @TimestampConverter() required final DateTime paidAt,
+          required final bool isPaid,
+          @ListTimestampConverter() required final List<DateTime> dates}) =
+      _$_Cycle;
+
+  factory _Cycle.fromJson(Map<String, dynamic> json) = _$_Cycle.fromJson;
+
+  @override
+  @TimestampConverter()
+  DateTime get createdAt;
+  @override // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
+  @TimestampConverter()
+  DateTime get paidAt;
+  @override
+  bool get isPaid;
+  @override // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
+  @ListTimestampConverter()
+  List<DateTime> get dates;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CycleCopyWith<_$_Cycle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
