@@ -4,9 +4,11 @@ import 'package:maid/app/app.dialogs.dart';
 import 'package:maid/app/app.locator.dart';
 import 'package:maid/app/app.router.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
