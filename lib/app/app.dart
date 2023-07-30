@@ -20,6 +20,7 @@ import 'package:stacked_services/stacked_services.dart';
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
+    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     Singleton(classType: FirebaseService),

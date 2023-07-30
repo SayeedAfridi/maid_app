@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:maid/constants/store.constant.dart';
 import 'package:maid/models/application_models.dart';
+import 'package:maid/utils/converter.dart';
 
 class StoreService {
   int _currentCycleValue = 1;
@@ -39,5 +40,16 @@ class StoreService {
     final data = snapshot.data() as Map<String, dynamic>;
 
     return Cycle.fromJson(data);
+  }
+
+  Future<void> addAttendance(List<DateTime> dates, DateTime? date) async {
+    try {
+      final data = <String, dynamic>{
+        'dates': const ListTimestampConverter().toJson(dates),
+      };
+      return _attendanceRef.doc(currentCycleName).update(data);
+    } catch (e) {
+      // TODO: add error handling
+    }
   }
 }
