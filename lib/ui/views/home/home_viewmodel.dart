@@ -18,6 +18,7 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
   bool _isAdding = false;
   bool _isPaid = false;
   DateTime? _paidAt;
+  bool _isPaying = false;
 
   List<DateTime> _attendedDays = List.empty();
 
@@ -29,6 +30,7 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
   bool get isPaid => _isPaid;
   DateTime? get paidAt => _paidAt;
   List<DateTime> get attendedDays => _attendedDays;
+  bool get isPaying => _isPaying;
 
   void incrementCounter() {
     _counter++;
@@ -94,8 +96,33 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
     notifyListeners();
   }
 
+  Future<void> makePayment() async {
+    _isPaying = true;
+    notifyListeners();
+    await _store.makePayment();
+    _isPaid = true;
+    _paidAt = DateTime.now();
+    _isPaying = false;
+    _snackbar.registerSnackbarConfig(
+      SnackbarConfig(
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.withOpacity(0.8),
+        borderRadius: 8,
+      ),
+    );
+    _snackbar.showSnackbar(
+      title: 'Successful',
+      message: 'Pyment done',
+      mainButtonTitle: 'Close',
+      onMainButtonTapped: _snackbar.closeSnackbar,
+      duration: const Duration(seconds: 3),
+    );
+    notifyListeners();
+  }
+
   @override
   Future<Cycle?> futureToRun() async {
+    await Future.delayed(Duration(seconds: 2));
     final cycle = await _store.getCurrentCycle();
     if (cycle == null) return null;
     _attendedDays = List.from(cycle.dates);

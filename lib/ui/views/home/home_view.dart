@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/ui/common/ui_helpers.dart';
+import 'package:maid/ui/widgets/day_card.dart';
 import 'package:maid/utils/formater.dart';
 import 'package:stacked/stacked.dart';
 
@@ -15,6 +16,7 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     int attendedDays = viewModel.attendedDays.length;
+    int daysUntilPayment = 15 - viewModel.attendedDays.length;
 
     AppBar appBar = AppBar(
       centerTitle: true,
@@ -47,42 +49,53 @@ class HomeView extends StackedView<HomeViewModel> {
           onRefresh: viewModel.futureToRun,
           child: ListView.builder(
             itemBuilder: (ctx, idx) => Center(
-              child: SizedBox(
-                height:
-                    screenHeight(context) - appBar.preferredSize.height - 100,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 10.0,
+                ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Attended this cycle'),
-                    verticalSpaceTiny,
-                    SkeletonLoader(
+                    Daycard(
+                      days: attendedDays,
                       loading: viewModel.isBusy,
-                      child: Text(
-                        '$attendedDays',
-                        style: const TextStyle(
-                          fontSize: 64,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      btnText: 'Add Attendance',
+                      caption: 'Attended:',
+                      btnLoading: viewModel.isAdding,
+                      onTap: viewModel.addAttendance,
                     ),
-                    verticalSpaceTiny,
-                    Text(attendedDays > 1 ? 'Days' : 'Day'),
-                    verticalSpaceLarge,
-                    FilledButton(
-                      onPressed: viewModel.addAttendance,
-                      child: viewModel.isAdding
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
+                    verticalSpaceSmall,
+                    !viewModel.isPaid
+                        ? Daycard(
+                            days: daysUntilPayment,
+                            loading: viewModel.isBusy,
+                            btnText: 'Pay now',
+                            caption: 'Pay in:',
+                            btnLoading: viewModel.isPaying,
+                            onTap: viewModel.makePayment,
+                          )
+                        : const Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.celebration,
+                                        size: 72,
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Payment done.. 😎'),
+                                ],
                               ),
-                            )
-                          : const Text(
-                              'Add Attendance',
                             ),
-                    ),
+                          ),
                   ],
                 ),
               ),

@@ -52,4 +52,16 @@ class StoreService {
       // TODO: add error handling
     }
   }
+
+  Future<void> makePayment() async {
+    try {
+      final data = <String, dynamic>{
+        'isPaid': true,
+        'paidAt': Timestamp.now(),
+      };
+      return _attendanceRef.doc(currentCycleName).update(data);
+    } catch (e) {
+      // TODO: add error handling
+    }
+  }
 }
