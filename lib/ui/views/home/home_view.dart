@@ -54,7 +54,7 @@ class HomeView extends StackedView<HomeViewModel> {
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
-                  vertical: 10.0,
+                  vertical: 14.0,
                 ),
                 child: Column(
                   children: [
