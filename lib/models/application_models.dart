@@ -31,6 +31,7 @@ class Cycle with _$Cycle {
     // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
     @ListTimestampConverter() required List<DateTime> dates,
     @TimestampConverter() DateTime? paidAt,
+    required int totalCycleDays,
   }) = _Cycle;
 
   factory Cycle.fromJson(Map<String, Object?> json) => _$CycleFromJson(json);

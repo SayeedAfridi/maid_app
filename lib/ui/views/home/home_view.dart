@@ -17,7 +17,8 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     int attendedDays = viewModel.attendedDays.length;
-    int daysUntilPayment = 15 - viewModel.attendedDays.length;
+    int daysUntilPayment =
+        viewModel.totalCycleDays - viewModel.attendedDays.length;
 
     AppBar appBar = AppBar(
       centerTitle: true,
@@ -64,6 +65,8 @@ class HomeView extends StackedView<HomeViewModel> {
                       caption: 'Attended:',
                       btnLoading: viewModel.isAdding,
                       onTap: viewModel.addAttendance,
+                      showBtn: attendedDays < viewModel.totalCycleDays,
+                      btnAlternativeText: 'Cyle complete',
                     ),
                     verticalSpaceSmall,
                     !viewModel.isPaid
@@ -74,13 +77,15 @@ class HomeView extends StackedView<HomeViewModel> {
                             caption: 'Pay in:',
                             btnLoading: viewModel.isPaying,
                             onTap: viewModel.makePayment,
+                            dayTextColor:
+                                daysUntilPayment <= 5 ? Colors.red : null,
                           )
-                        : const Card(
+                        : Card(
                             child: Padding(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(
@@ -89,10 +94,12 @@ class HomeView extends StackedView<HomeViewModel> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
-                                  Text('Payment done.. 😎'),
+                                  Text(
+                                    'Payment done.. 😎 ..on ${formatDate(viewModel.paidAt)}',
+                                  ),
                                 ],
                               ),
                             ),

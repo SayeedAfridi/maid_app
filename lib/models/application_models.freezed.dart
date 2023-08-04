@@ -235,6 +235,7 @@ mixin _$Cycle {
   List<DateTime> get dates => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get paidAt => throw _privateConstructorUsedError;
+  int get totalCycleDays => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -251,7 +252,8 @@ abstract class $CycleCopyWith<$Res> {
       String name,
       bool isPaid,
       @ListTimestampConverter() List<DateTime> dates,
-      @TimestampConverter() DateTime? paidAt});
+      @TimestampConverter() DateTime? paidAt,
+      int totalCycleDays});
 }
 
 /// @nodoc
@@ -272,6 +274,7 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
     Object? isPaid = null,
     Object? dates = null,
     Object? paidAt = freezed,
+    Object? totalCycleDays = null,
   }) {
     return _then(_value.copyWith(
       createdAt: null == createdAt
@@ -294,6 +297,10 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
           ? _value.paidAt
           : paidAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      totalCycleDays: null == totalCycleDays
+          ? _value.totalCycleDays
+          : totalCycleDays // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -309,7 +316,8 @@ abstract class _$$_CycleCopyWith<$Res> implements $CycleCopyWith<$Res> {
       String name,
       bool isPaid,
       @ListTimestampConverter() List<DateTime> dates,
-      @TimestampConverter() DateTime? paidAt});
+      @TimestampConverter() DateTime? paidAt,
+      int totalCycleDays});
 }
 
 /// @nodoc
@@ -326,6 +334,7 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
     Object? isPaid = null,
     Object? dates = null,
     Object? paidAt = freezed,
+    Object? totalCycleDays = null,
   }) {
     return _then(_$_Cycle(
       createdAt: null == createdAt
@@ -348,6 +357,10 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
           ? _value.paidAt
           : paidAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      totalCycleDays: null == totalCycleDays
+          ? _value.totalCycleDays
+          : totalCycleDays // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -360,7 +373,8 @@ class _$_Cycle implements _Cycle {
       required this.name,
       required this.isPaid,
       @ListTimestampConverter() required final List<DateTime> dates,
-      @TimestampConverter() this.paidAt})
+      @TimestampConverter() this.paidAt,
+      required this.totalCycleDays})
       : _dates = dates;
 
   factory _$_Cycle.fromJson(Map<String, dynamic> json) =>
@@ -388,10 +402,12 @@ class _$_Cycle implements _Cycle {
   @override
   @TimestampConverter()
   final DateTime? paidAt;
+  @override
+  final int totalCycleDays;
 
   @override
   String toString() {
-    return 'Cycle(createdAt: $createdAt, name: $name, isPaid: $isPaid, dates: $dates, paidAt: $paidAt)';
+    return 'Cycle(createdAt: $createdAt, name: $name, isPaid: $isPaid, dates: $dates, paidAt: $paidAt, totalCycleDays: $totalCycleDays)';
   }
 
   @override
@@ -404,13 +420,15 @@ class _$_Cycle implements _Cycle {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isPaid, isPaid) || other.isPaid == isPaid) &&
             const DeepCollectionEquality().equals(other._dates, _dates) &&
-            (identical(other.paidAt, paidAt) || other.paidAt == paidAt));
+            (identical(other.paidAt, paidAt) || other.paidAt == paidAt) &&
+            (identical(other.totalCycleDays, totalCycleDays) ||
+                other.totalCycleDays == totalCycleDays));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, createdAt, name, isPaid,
-      const DeepCollectionEquality().hash(_dates), paidAt);
+      const DeepCollectionEquality().hash(_dates), paidAt, totalCycleDays);
 
   @JsonKey(ignore: true)
   @override
@@ -432,7 +450,8 @@ abstract class _Cycle implements Cycle {
       required final String name,
       required final bool isPaid,
       @ListTimestampConverter() required final List<DateTime> dates,
-      @TimestampConverter() final DateTime? paidAt}) = _$_Cycle;
+      @TimestampConverter() final DateTime? paidAt,
+      required final int totalCycleDays}) = _$_Cycle;
 
   factory _Cycle.fromJson(Map<String, dynamic> json) = _$_Cycle.fromJson;
 
@@ -449,6 +468,8 @@ abstract class _Cycle implements Cycle {
   @override
   @TimestampConverter()
   DateTime? get paidAt;
+  @override
+  int get totalCycleDays;
   @override
   @JsonKey(ignore: true)
   _$$_CycleCopyWith<_$_Cycle> get copyWith =>

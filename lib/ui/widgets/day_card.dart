@@ -9,6 +9,9 @@ class Daycard extends StatelessWidget {
   final String btnText;
   final void Function()? onTap;
   final bool btnLoading;
+  final bool showBtn;
+  final Color? dayTextColor;
+  final String btnAlternativeText;
 
   const Daycard({
     super.key,
@@ -18,6 +21,9 @@ class Daycard extends StatelessWidget {
     required this.btnText,
     required this.caption,
     required this.btnLoading,
+    this.showBtn = true,
+    this.dayTextColor,
+    this.btnAlternativeText = '',
   });
 
   @override
@@ -41,9 +47,10 @@ class Daycard extends StatelessWidget {
                   loading: loading,
                   child: Text(
                     '$days',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 64,
                       fontWeight: FontWeight.bold,
+                      color: dayTextColor,
                     ),
                   ),
                 ),
@@ -52,31 +59,47 @@ class Daycard extends StatelessWidget {
                   loading: loading,
                   child: Text(
                     days > 1 ? 'days' : 'day',
+                    style: TextStyle(
+                      color: dayTextColor,
+                    ),
                   ),
                 ),
               ],
             ),
             verticalSpaceSmall,
-            SkeletonLoader(
-              loading: loading,
-              child: Align(
-                alignment: Alignment.center,
-                child: FilledButton(
-                  onPressed: btnLoading ? () {} : onTap,
-                  child: btnLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
+            showBtn
+                ? SkeletonLoader(
+                    loading: loading,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: FilledButton(
+                        onPressed: btnLoading ? () {} : onTap,
+                        child: btnLoading
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Text(
+                                btnText,
+                              ),
+                      ),
+                    ),
+                  )
+                : btnAlternativeText != ''
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          btnAlternativeText,
+                          style: const TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
                           ),
-                        )
-                      : Text(
-                          btnText,
                         ),
-                ),
-              ),
-            ),
+                      )
+                    : const SizedBox(),
           ],
         ),
       ),

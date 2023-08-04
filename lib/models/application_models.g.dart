@@ -30,6 +30,7 @@ _$_Cycle _$$_CycleFromJson(Map<String, dynamic> json) => _$_Cycle(
       dates: const ListTimestampConverter().fromJson(json['dates'] as List),
       paidAt: _$JsonConverterFromJson<Timestamp, DateTime>(
           json['paidAt'], const TimestampConverter().fromJson),
+      totalCycleDays: json['totalCycleDays'] as int,
     );
 
 Map<String, dynamic> _$$_CycleToJson(_$_Cycle instance) => <String, dynamic>{
@@ -39,6 +40,7 @@ Map<String, dynamic> _$$_CycleToJson(_$_Cycle instance) => <String, dynamic>{
       'dates': const ListTimestampConverter().toJson(instance.dates),
       'paidAt': _$JsonConverterToJson<Timestamp, DateTime>(
           instance.paidAt, const TimestampConverter().toJson),
+      'totalCycleDays': instance.totalCycleDays,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

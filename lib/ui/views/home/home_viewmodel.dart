@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:maid/app/app.bottomsheets.dart';
-import 'package:maid/app/app.dialogs.dart';
 import 'package:maid/app/app.locator.dart';
 import 'package:maid/models/application_models.dart';
 import 'package:maid/services/store.service.dart';
-import 'package:maid/ui/common/app_strings.dart';
 import 'package:maid/utils/formater.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends FutureViewModel<Cycle?> {
-  final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
   final _store = locator<StoreService>();
   final _snackbar = locator<SnackbarService>();
 
@@ -20,38 +15,16 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
   DateTime? _paidAt;
   bool _isPaying = false;
 
+  int _totalCycleDays = 15;
+
   List<DateTime> _attendedDays = List.empty();
-
-  String get counterLabel => 'Counter is: $_counter';
-
-  int _counter = 0;
 
   bool get isAdding => _isAdding;
   bool get isPaid => _isPaid;
   DateTime? get paidAt => _paidAt;
   List<DateTime> get attendedDays => _attendedDays;
   bool get isPaying => _isPaying;
-
-  void incrementCounter() {
-    _counter++;
-    rebuildUi();
-  }
-
-  void showDialog() {
-    _dialogService.showCustomDialog(
-      variant: DialogType.infoAlert,
-      title: 'Stacked Rocks!',
-      description: 'Give stacked $_counter stars on Github',
-    );
-  }
-
-  void showBottomSheet() {
-    _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.notice,
-      title: ksHomeBottomSheetTitle,
-      description: ksHomeBottomSheetDescription,
-    );
-  }
+  int get totalCycleDays => _totalCycleDays;
 
   Future<void> addAttendance() async {
     _isAdding = true;
@@ -129,6 +102,7 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
     _attendedDays = List.from(cycle.dates);
     _isPaid = cycle.isPaid;
     _paidAt = cycle.paidAt;
+    _totalCycleDays = cycle.totalCycleDays;
     notifyListeners();
     return cycle;
   }
