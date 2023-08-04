@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/ui/common/ui_helpers.dart';
+import 'package:maid/ui/widgets/attended_day_grid.dart';
 import 'package:maid/ui/widgets/day_card.dart';
 import 'package:maid/utils/formater.dart';
 import 'package:stacked/stacked.dart';
@@ -96,6 +97,16 @@ class HomeView extends StackedView<HomeViewModel> {
                               ),
                             ),
                           ),
+                    verticalSpaceMedium,
+                    SkeletonLoader(
+                      loading: viewModel.isBusy,
+                      child: const Text('Attended dates'),
+                    ),
+                    verticalSpaceSmall,
+                    AttendedGrid(
+                      dates: viewModel.attendedDays,
+                      loading: viewModel.isBusy,
+                    ),
                   ],
                 ),
               ),

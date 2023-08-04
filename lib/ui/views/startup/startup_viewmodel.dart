@@ -17,7 +17,7 @@ class StartupViewModel extends BaseViewModel {
     await _firebase.init();
     await _store.init();
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     _navigationService.replaceWithHomeView(
       null,

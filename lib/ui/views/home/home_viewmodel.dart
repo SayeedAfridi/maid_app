@@ -122,7 +122,6 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
 
   @override
   Future<Cycle?> futureToRun() async {
-    await Future.delayed(Duration(seconds: 2));
     final cycle = await _store.getCurrentCycle();
     if (cycle == null) return null;
     _attendedDays = List.from(cycle.dates);
