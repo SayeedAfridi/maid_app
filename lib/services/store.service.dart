@@ -42,7 +42,7 @@ class StoreService {
     return Cycle.fromJson(data);
   }
 
-  Future<void> addAttendance(List<DateTime> dates, DateTime? date) async {
+  Future<void> addAttendance(List<DateTime> dates) async {
     try {
       final data = <String, dynamic>{
         'dates': const ListTimestampConverter().toJson(dates),

@@ -76,8 +76,9 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
         return;
       }
     }
-    _attendedDays.add(DateTime.now());
-    await _store.addAttendance(_attendedDays, null);
+    List<DateTime> days = List.from(_attendedDays);
+    days.add(DateTime.now());
+    await _store.addAttendance(days);
     _isAdding = false;
     _snackbar.registerSnackbarConfig(
       SnackbarConfig(
@@ -93,6 +94,7 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
       onMainButtonTapped: _snackbar.closeSnackbar,
       duration: const Duration(seconds: 3),
     );
+    _attendedDays = days;
     notifyListeners();
   }
 
@@ -100,8 +102,6 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
     _isPaying = true;
     notifyListeners();
     await _store.makePayment();
-    _isPaid = true;
-    _paidAt = DateTime.now();
     _isPaying = false;
     _snackbar.registerSnackbarConfig(
       SnackbarConfig(
@@ -117,6 +117,8 @@ class HomeViewModel extends FutureViewModel<Cycle?> {
       onMainButtonTapped: _snackbar.closeSnackbar,
       duration: const Duration(seconds: 3),
     );
+    _isPaid = true;
+    _paidAt = DateTime.now();
     notifyListeners();
   }
 
