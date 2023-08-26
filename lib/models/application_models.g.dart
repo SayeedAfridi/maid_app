@@ -23,10 +23,14 @@ Map<String, dynamic> _$$_CurrentCycleToJson(_$_CurrentCycle instance) =>
     };
 
 _$_Cycle _$$_CycleFromJson(Map<String, dynamic> json) => _$_Cycle(
+      id: json['id'] as String,
       createdAt:
           const TimestampConverter().fromJson(json['createdAt'] as Timestamp),
+      completedAt: _$JsonConverterFromJson<Timestamp, DateTime>(
+          json['completedAt'], const TimestampConverter().fromJson),
       name: json['name'] as String,
       isPaid: json['isPaid'] as bool,
+      isCompleted: json['isCompleted'] as bool,
       dates: const ListTimestampConverter().fromJson(json['dates'] as List),
       paidAt: _$JsonConverterFromJson<Timestamp, DateTime>(
           json['paidAt'], const TimestampConverter().fromJson),
@@ -34,9 +38,13 @@ _$_Cycle _$$_CycleFromJson(Map<String, dynamic> json) => _$_Cycle(
     );
 
 Map<String, dynamic> _$$_CycleToJson(_$_Cycle instance) => <String, dynamic>{
+      'id': instance.id,
       'createdAt': const TimestampConverter().toJson(instance.createdAt),
+      'completedAt': _$JsonConverterToJson<Timestamp, DateTime>(
+          instance.completedAt, const TimestampConverter().toJson),
       'name': instance.name,
       'isPaid': instance.isPaid,
+      'isCompleted': instance.isCompleted,
       'dates': const ListTimestampConverter().toJson(instance.dates),
       'paidAt': _$JsonConverterToJson<Timestamp, DateTime>(
           instance.paidAt, const TimestampConverter().toJson),

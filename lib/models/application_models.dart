@@ -24,10 +24,13 @@ class CurrentCycle with _$CurrentCycle {
 @freezed
 class Cycle with _$Cycle {
   const factory Cycle({
+    required String id,
     @TimestampConverter() required DateTime createdAt,
+    @TimestampConverter() DateTime? completedAt,
     required String name,
     // @JsonKey(name: 'paidAt', fromJson: _fromJson, toJson: _toJson)
     required bool isPaid,
+    required bool isCompleted,
     // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
     @ListTimestampConverter() required List<DateTime> dates,
     @TimestampConverter() DateTime? paidAt,

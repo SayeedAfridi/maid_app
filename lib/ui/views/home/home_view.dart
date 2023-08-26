@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maid/ui/common/ui_helpers.dart';
-import 'package:maid/ui/widgets/attended_day_grid.dart';
-import 'package:maid/ui/widgets/day_card.dart';
-import 'package:maid/utils/formater.dart';
+import 'package:maid/ui/views/active_cycle/active_cycle_view.dart';
+import 'package:maid/ui/views/cycles/cycles_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -16,113 +14,36 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    int attendedDays = viewModel.attendedDays.length;
-    int daysUntilPayment =
-        viewModel.totalCycleDays - viewModel.attendedDays.length;
-
-    AppBar appBar = AppBar(
-      centerTitle: true,
-      title: Column(
-        children: [
-          SkeletonLoader(
-            loading: viewModel.isBusy,
-            child: Text(
-              viewModel.data?.name.split('-').join(' ').toUpperCase() ??
-                  'Current cycle',
-            ),
+    return Scaffold(
+      body: getViewFromIndex(viewModel.currentIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Theme.of(context).primaryColor,
+        currentIndex: viewModel.currentIndex,
+        onTap: viewModel.setIndex,
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Active Cycle',
+            icon: Icon(Icons.art_track),
           ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(
-            formatDate(DateTime.now()),
-            style: const TextStyle(
-              fontSize: 10,
-            ),
+          BottomNavigationBarItem(
+            label: 'Cycles',
+            icon: Icon(Icons.list),
           ),
         ],
       ),
     );
+  }
 
-    return Scaffold(
-      appBar: appBar,
-      body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: viewModel.futureToRun,
-          child: ListView.builder(
-            itemBuilder: (ctx, idx) => Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 14.0,
-                ),
-                child: Column(
-                  children: [
-                    Daycard(
-                      days: attendedDays,
-                      loading: viewModel.isBusy,
-                      btnText: 'Add Attendance',
-                      caption: 'Attended:',
-                      btnLoading: viewModel.isAdding,
-                      onTap: viewModel.addAttendance,
-                      showBtn: attendedDays < viewModel.totalCycleDays,
-                      btnAlternativeText: 'Cyle complete',
-                    ),
-                    verticalSpaceSmall,
-                    !viewModel.isPaid
-                        ? Daycard(
-                            days: daysUntilPayment,
-                            loading: viewModel.isBusy,
-                            btnText: 'Pay now',
-                            caption: 'Pay in:',
-                            btnLoading: viewModel.isPaying,
-                            onTap: viewModel.makePayment,
-                            dayTextColor:
-                                daysUntilPayment <= 5 ? Colors.red : null,
-                          )
-                        : Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.celebration,
-                                        size: 72,
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Payment done.. 😎 ..on ${formatDate(viewModel.paidAt)}',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                    verticalSpaceMedium,
-                    SkeletonLoader(
-                      loading: viewModel.isBusy,
-                      child: const Text('Attended dates'),
-                    ),
-                    verticalSpaceSmall,
-                    AttendedGrid(
-                      dates: viewModel.attendedDays,
-                      loading: viewModel.isBusy,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            itemCount: 1,
-          ),
-        ),
-      ),
-    );
+  Widget getViewFromIndex(int index) {
+    switch (index) {
+      case 0:
+        return const ActiveCycleView();
+      case 1:
+        return const CyclesView();
+      default:
+        return const ActiveCycleView();
+    }
   }
 
   @override

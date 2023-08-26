@@ -31,15 +31,27 @@ class StoreService {
     _nextCycleName = data.nextCycleName;
   }
 
+  Cycle _getCycleFromDocSnapshot(dynamic snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    data.addEntries({'id': snapshot.id}.entries);
+    return Cycle.fromJson(data);
+  }
+
   Future<Cycle?> getCurrentCycle() async {
     DocumentSnapshot snapshot =
         await _attendanceRef.doc(currentCycleName).get();
     if (!snapshot.exists) {
       return null;
     }
-    final data = snapshot.data() as Map<String, dynamic>;
+    return _getCycleFromDocSnapshot(snapshot);
+  }
 
-    return Cycle.fromJson(data);
+  Future<Cycle?> getCycle(String cycleId) async {
+    DocumentSnapshot snapshot = await _attendanceRef.doc(cycleId).get();
+    if (!snapshot.exists) {
+      return null;
+    }
+    return _getCycleFromDocSnapshot(snapshot);
   }
 
   Future<void> addAttendance(List<DateTime> dates) async {
@@ -62,6 +74,20 @@ class StoreService {
       return _attendanceRef.doc(currentCycleName).update(data);
     } catch (e) {
       // TODO: add error handling
+    }
+  }
+
+  Future<List<Cycle>> getCycles() async {
+    List<Cycle> data = [];
+    try {
+      QuerySnapshot snap =
+          await _attendanceRef.where('isCompleted', isEqualTo: true).get();
+      for (var docSnapshot in snap.docs) {
+        data.add(_getCycleFromDocSnapshot(docSnapshot));
+      }
+      return data;
+    } catch (e) {
+      return data;
     }
   }
 }

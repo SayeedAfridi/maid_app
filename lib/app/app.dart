@@ -7,6 +7,9 @@ import 'package:maid/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:maid/ui/views/active_cycle/active_cycle_view.dart';
+import 'package:maid/ui/views/cycle_details/cycle_details_view.dart';
+import 'package:maid/ui/views/cycles/cycles_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -16,7 +19,10 @@ import 'package:stacked_services/stacked_services.dart';
       page: StartupView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    // @stacked-route
+    MaterialRoute(page: ActiveCycleView),
+    MaterialRoute(page: CycleDetailsView),
+    MaterialRoute(page: CyclesView),
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),

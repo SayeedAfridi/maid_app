@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '246021485507',
     projectId: 'ad-maid-app',
     storageBucket: 'ad-maid-app.appspot.com',
-    iosClientId: '246021485507-trjukoj9pr7bdhuudfsvm8bdvvp9nc41.apps.googleusercontent.com',
+    iosClientId:
+        '246021485507-trjukoj9pr7bdhuudfsvm8bdvvp9nc41.apps.googleusercontent.com',
     iosBundleId: 'dev.afridi1.maid',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '246021485507',
     projectId: 'ad-maid-app',
     storageBucket: 'ad-maid-app.appspot.com',
-    iosClientId: '246021485507-trjukoj9pr7bdhuudfsvm8bdvvp9nc41.apps.googleusercontent.com',
+    iosClientId:
+        '246021485507-trjukoj9pr7bdhuudfsvm8bdvvp9nc41.apps.googleusercontent.com',
     iosBundleId: 'dev.afridi1.maid',
   );
 }
