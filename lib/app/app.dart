@@ -19,9 +19,9 @@ import 'package:maid/ui/views/cycles/cycles_view.dart';
       page: StartupView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    MaterialRoute(page: ActiveCycleView),
-    MaterialRoute(page: CycleDetailsView),
-    MaterialRoute(page: CyclesView),
+    CupertinoRoute(page: ActiveCycleView),
+    CupertinoRoute(page: CycleDetailsView),
+    CupertinoRoute(page: CyclesView),
 // @stacked-route
   ],
   dependencies: [
