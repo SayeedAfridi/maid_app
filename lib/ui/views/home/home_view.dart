@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:maid/ui/views/active_cycle/active_cycle_view.dart';
 import 'package:maid/ui/views/cycles/cycles_view.dart';
@@ -15,7 +16,21 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      body: getViewFromIndex(viewModel.currentIndex),
+      body: PageTransitionSwitcher(
+        duration: const Duration(
+          milliseconds: 800,
+        ),
+        reverse: viewModel.reverse,
+        transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
+          return SharedAxisTransition(
+            animation: primaryAnimation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.horizontal,
+            child: child,
+          );
+        },
+        child: getViewFromIndex(viewModel.currentIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).primaryColor,
