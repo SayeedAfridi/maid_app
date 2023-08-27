@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:maid/ui/views/active_cycle/active_cycle_view.dart';
 import 'package:maid/ui/views/cycles/cycles_view.dart';
@@ -16,37 +17,48 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      body: PageTransitionSwitcher(
-        duration: const Duration(
-          milliseconds: 800,
+      extendBody: true,
+      body: Stack(children: [
+        PageTransitionSwitcher(
+          duration: const Duration(
+            milliseconds: 800,
+          ),
+          reverse: viewModel.reverse,
+          transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
+            return SharedAxisTransition(
+              animation: primaryAnimation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+              child: child,
+            );
+          },
+          child: getViewFromIndex(viewModel.currentIndex),
         ),
-        reverse: viewModel.reverse,
-        transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
-          return SharedAxisTransition(
-            animation: primaryAnimation,
-            secondaryAnimation: secondaryAnimation,
-            transitionType: SharedAxisTransitionType.horizontal,
-            child: child,
-          );
-        },
-        child: getViewFromIndex(viewModel.currentIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Theme.of(context).primaryColor,
-        currentIndex: viewModel.currentIndex,
-        onTap: viewModel.setIndex,
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Active Cycle',
-            icon: Icon(Icons.art_track),
+        Positioned(
+          bottom: 20,
+          left: 0,
+          right: 0,
+          child: Wrap(
+            children: [
+              DotNavigationBar(
+                currentIndex: viewModel.currentIndex,
+                onTap: viewModel.setIndex,
+                backgroundColor: Theme.of(context).cardColor,
+                items: [
+                  DotNavigationBarItem(
+                    icon: const Icon(Icons.today),
+                    selectedColor: Colors.amber,
+                  ),
+                  DotNavigationBarItem(
+                    icon: const Icon(Icons.view_list),
+                    selectedColor: Colors.deepOrangeAccent,
+                  ),
+                ],
+              )
+            ],
           ),
-          BottomNavigationBarItem(
-            label: 'Cycles',
-            icon: Icon(Icons.list),
-          ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 
