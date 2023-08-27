@@ -29,8 +29,7 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
           SkeletonLoader(
             loading: viewModel.isBusy,
             child: Text(
-              viewModel.data?.name.split('-').join(' ').toUpperCase() ??
-                  'Current cycle',
+              viewModel.data?.name ?? 'Cycle Details',
             ),
           ),
           const SizedBox(
