@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maid/models/application_models.dart';
+import 'package:maid/ui/common/ui_helpers.dart';
 import 'package:maid/utils/formater.dart';
 import 'package:stacked/stacked.dart';
 
@@ -43,8 +44,33 @@ class CyclesView extends StackedView<CyclesViewModel> {
             : RefreshIndicator(
                 onRefresh: viewModel.futureToRun,
                 child: ListView.builder(
-                  itemCount: viewModel.cycles.length,
+                  itemCount:
+                      viewModel.cycles.isEmpty ? 1 : viewModel.cycles.length,
                   itemBuilder: (BuildContext ctx, int index) {
+                    if (viewModel.cycles.isEmpty) {
+                      return Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(
+                              height: 150,
+                            ),
+                            Image.asset(
+                              'assets/images/not-found.png',
+                              height: 200,
+                            ),
+                            verticalSpaceSmall,
+                            const Text(
+                              'No completed cycle found',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                     Cycle cycle = viewModel.cycles[index];
                     return GestureDetector(
                       onTap: () {
