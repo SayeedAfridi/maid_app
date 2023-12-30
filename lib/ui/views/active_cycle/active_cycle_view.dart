@@ -113,6 +113,16 @@ class ActiveCycleView extends StackedView<ActiveCycleViewModel> {
                       dates: viewModel.attendedDays,
                       loading: viewModel.isBusy,
                     ),
+                    verticalSpaceMedium,
+                    SkeletonLoader(
+                      loading: viewModel.isBusy,
+                      child: const Text('Holidays'),
+                    ),
+                    AttendedGrid(
+                      dates: viewModel.holidays,
+                      loading: viewModel.isBusy,
+                      isHoliday: true,
+                    ),
                   ],
                 ),
               ),

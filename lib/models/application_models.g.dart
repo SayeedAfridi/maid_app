@@ -32,6 +32,8 @@ _$_Cycle _$$_CycleFromJson(Map<String, dynamic> json) => _$_Cycle(
       isPaid: json['isPaid'] as bool,
       isCompleted: json['isCompleted'] as bool,
       dates: const ListTimestampConverter().fromJson(json['dates'] as List),
+      holidays:
+          const ListTimestampConverter().fromJson(json['holidays'] as List),
       paidAt: _$JsonConverterFromJson<Timestamp, DateTime>(
           json['paidAt'], const TimestampConverter().fromJson),
       totalCycleDays: json['totalCycleDays'] as int,
@@ -46,6 +48,7 @@ Map<String, dynamic> _$$_CycleToJson(_$_Cycle instance) => <String, dynamic>{
       'isPaid': instance.isPaid,
       'isCompleted': instance.isCompleted,
       'dates': const ListTimestampConverter().toJson(instance.dates),
+      'holidays': const ListTimestampConverter().toJson(instance.holidays),
       'paidAt': _$JsonConverterToJson<Timestamp, DateTime>(
           instance.paidAt, const TimestampConverter().toJson),
       'totalCycleDays': instance.totalCycleDays,

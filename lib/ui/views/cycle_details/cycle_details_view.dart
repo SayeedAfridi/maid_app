@@ -115,6 +115,17 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
                       dates: viewModel.attendedDays,
                       loading: viewModel.isBusy,
                     ),
+                    verticalSpaceMedium,
+                    SkeletonLoader(
+                      loading: viewModel.isBusy,
+                      child: const Text('Holidays'),
+                    ),
+                    verticalSpaceSmall,
+                    AttendedGrid(
+                      dates: viewModel.holidays,
+                      loading: viewModel.isBusy,
+                      isHoliday: true,
+                    ),
                   ],
                 ),
               ),

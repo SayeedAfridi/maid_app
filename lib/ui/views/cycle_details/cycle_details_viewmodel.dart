@@ -14,10 +14,12 @@ class CycleDetailsViewModel extends FutureViewModel<Cycle?> {
   int _totalCycleDays = 15;
 
   List<DateTime> _attendedDays = List.empty();
+  List<DateTime> _holidays = List.empty();
 
   bool get isPaid => _isPaid;
   DateTime? get paidAt => _paidAt;
   List<DateTime> get attendedDays => _attendedDays;
+  List<DateTime> get holidays => _holidays;
   int get totalCycleDays => _totalCycleDays;
 
   @override
@@ -25,6 +27,7 @@ class CycleDetailsViewModel extends FutureViewModel<Cycle?> {
     final cycle = await _store.getCycle(cycleId);
     if (cycle == null) return null;
     _attendedDays = List.from(cycle.dates);
+    _holidays = List.from(cycle.holidays);
     _isPaid = cycle.isPaid;
     _paidAt = cycle.paidAt;
     _totalCycleDays = cycle.totalCycleDays;

@@ -237,6 +237,8 @@ mixin _$Cycle {
       throw _privateConstructorUsedError; // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
   @ListTimestampConverter()
   List<DateTime> get dates => throw _privateConstructorUsedError;
+  @ListTimestampConverter()
+  List<DateTime> get holidays => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get paidAt => throw _privateConstructorUsedError;
   int get totalCycleDays => throw _privateConstructorUsedError;
@@ -259,6 +261,7 @@ abstract class $CycleCopyWith<$Res> {
       bool isPaid,
       bool isCompleted,
       @ListTimestampConverter() List<DateTime> dates,
+      @ListTimestampConverter() List<DateTime> holidays,
       @TimestampConverter() DateTime? paidAt,
       int totalCycleDays});
 }
@@ -283,6 +286,7 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
     Object? isPaid = null,
     Object? isCompleted = null,
     Object? dates = null,
+    Object? holidays = null,
     Object? paidAt = freezed,
     Object? totalCycleDays = null,
   }) {
@@ -315,6 +319,10 @@ class _$CycleCopyWithImpl<$Res, $Val extends Cycle>
           ? _value.dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      holidays: null == holidays
+          ? _value.holidays
+          : holidays // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
       paidAt: freezed == paidAt
           ? _value.paidAt
           : paidAt // ignore: cast_nullable_to_non_nullable
@@ -341,6 +349,7 @@ abstract class _$$_CycleCopyWith<$Res> implements $CycleCopyWith<$Res> {
       bool isPaid,
       bool isCompleted,
       @ListTimestampConverter() List<DateTime> dates,
+      @ListTimestampConverter() List<DateTime> holidays,
       @TimestampConverter() DateTime? paidAt,
       int totalCycleDays});
 }
@@ -361,6 +370,7 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
     Object? isPaid = null,
     Object? isCompleted = null,
     Object? dates = null,
+    Object? holidays = null,
     Object? paidAt = freezed,
     Object? totalCycleDays = null,
   }) {
@@ -393,6 +403,10 @@ class __$$_CycleCopyWithImpl<$Res> extends _$CycleCopyWithImpl<$Res, _$_Cycle>
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      holidays: null == holidays
+          ? _value._holidays
+          : holidays // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
       paidAt: freezed == paidAt
           ? _value.paidAt
           : paidAt // ignore: cast_nullable_to_non_nullable
@@ -416,9 +430,11 @@ class _$_Cycle implements _Cycle {
       required this.isPaid,
       required this.isCompleted,
       @ListTimestampConverter() required final List<DateTime> dates,
+      @ListTimestampConverter() required final List<DateTime> holidays,
       @TimestampConverter() this.paidAt,
       required this.totalCycleDays})
-      : _dates = dates;
+      : _dates = dates,
+        _holidays = holidays;
 
   factory _$_Cycle.fromJson(Map<String, dynamic> json) =>
       _$$_CycleFromJson(json);
@@ -449,6 +465,15 @@ class _$_Cycle implements _Cycle {
     return EqualUnmodifiableListView(_dates);
   }
 
+  final List<DateTime> _holidays;
+  @override
+  @ListTimestampConverter()
+  List<DateTime> get holidays {
+    if (_holidays is EqualUnmodifiableListView) return _holidays;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_holidays);
+  }
+
   @override
   @TimestampConverter()
   final DateTime? paidAt;
@@ -457,7 +482,7 @@ class _$_Cycle implements _Cycle {
 
   @override
   String toString() {
-    return 'Cycle(id: $id, createdAt: $createdAt, completedAt: $completedAt, name: $name, isPaid: $isPaid, isCompleted: $isCompleted, dates: $dates, paidAt: $paidAt, totalCycleDays: $totalCycleDays)';
+    return 'Cycle(id: $id, createdAt: $createdAt, completedAt: $completedAt, name: $name, isPaid: $isPaid, isCompleted: $isCompleted, dates: $dates, holidays: $holidays, paidAt: $paidAt, totalCycleDays: $totalCycleDays)';
   }
 
   @override
@@ -475,6 +500,7 @@ class _$_Cycle implements _Cycle {
             (identical(other.isCompleted, isCompleted) ||
                 other.isCompleted == isCompleted) &&
             const DeepCollectionEquality().equals(other._dates, _dates) &&
+            const DeepCollectionEquality().equals(other._holidays, _holidays) &&
             (identical(other.paidAt, paidAt) || other.paidAt == paidAt) &&
             (identical(other.totalCycleDays, totalCycleDays) ||
                 other.totalCycleDays == totalCycleDays));
@@ -491,6 +517,7 @@ class _$_Cycle implements _Cycle {
       isPaid,
       isCompleted,
       const DeepCollectionEquality().hash(_dates),
+      const DeepCollectionEquality().hash(_holidays),
       paidAt,
       totalCycleDays);
 
@@ -517,6 +544,7 @@ abstract class _Cycle implements Cycle {
       required final bool isPaid,
       required final bool isCompleted,
       @ListTimestampConverter() required final List<DateTime> dates,
+      @ListTimestampConverter() required final List<DateTime> holidays,
       @TimestampConverter() final DateTime? paidAt,
       required final int totalCycleDays}) = _$_Cycle;
 
@@ -539,6 +567,9 @@ abstract class _Cycle implements Cycle {
   @override // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
   @ListTimestampConverter()
   List<DateTime> get dates;
+  @override
+  @ListTimestampConverter()
+  List<DateTime> get holidays;
   @override
   @TimestampConverter()
   DateTime? get paidAt;

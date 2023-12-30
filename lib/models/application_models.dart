@@ -33,6 +33,7 @@ class Cycle with _$Cycle {
     required bool isCompleted,
     // @JsonKey(name: 'dates', fromJson: _fromListJson, toJson: _toListJson)
     @ListTimestampConverter() required List<DateTime> dates,
+    @ListTimestampConverter() required List<DateTime> holidays,
     @TimestampConverter() DateTime? paidAt,
     required int totalCycleDays,
   }) = _Cycle;

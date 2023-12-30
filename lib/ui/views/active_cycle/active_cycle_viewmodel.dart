@@ -18,11 +18,13 @@ class ActiveCycleViewModel extends FutureViewModel<Cycle?> {
   int _totalCycleDays = 15;
 
   List<DateTime> _attendedDays = List.empty();
+  List<DateTime> _holidays = List.empty();
 
   bool get isAdding => _isAdding;
   bool get isPaid => _isPaid;
   DateTime? get paidAt => _paidAt;
   List<DateTime> get attendedDays => _attendedDays;
+  List<DateTime> get holidays => _holidays;
   bool get isPaying => _isPaying;
   int get totalCycleDays => _totalCycleDays;
 
@@ -100,6 +102,7 @@ class ActiveCycleViewModel extends FutureViewModel<Cycle?> {
     final cycle = await _store.getCurrentCycle();
     if (cycle == null) return null;
     _attendedDays = List.from(cycle.dates);
+    _holidays = List.from(cycle.holidays);
     _isPaid = cycle.isPaid;
     _paidAt = cycle.paidAt;
     _totalCycleDays = cycle.totalCycleDays;

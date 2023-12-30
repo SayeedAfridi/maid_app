@@ -5,8 +5,14 @@ import 'package:stacked/stacked.dart';
 class AttendedGrid extends StatelessWidget {
   final List<DateTime> dates;
   final bool loading;
+  final bool? isHoliday;
 
-  const AttendedGrid({super.key, required this.dates, required this.loading});
+  const AttendedGrid({
+    super.key,
+    required this.dates,
+    required this.loading,
+    this.isHoliday,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +46,7 @@ class AttendedGrid extends StatelessWidget {
       itemCount: dates.length,
       itemBuilder: (context, index) => AttendedDayCard(
         date: dates[index],
+        isHoliday: isHoliday,
       ),
     );
   }
