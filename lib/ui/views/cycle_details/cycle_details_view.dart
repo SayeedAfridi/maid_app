@@ -19,6 +19,7 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
     Widget? child,
   ) {
     int attendedDays = viewModel.attendedDays.length;
+    int holidays = viewModel.holidays.length;
     int daysUntilPayment =
         viewModel.totalCycleDays - viewModel.attendedDays.length;
 
@@ -59,15 +60,39 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
                 ),
                 child: Column(
                   children: [
-                    Daycard(
-                      days: attendedDays,
-                      loading: viewModel.isBusy,
-                      btnText: 'Add Attendance',
-                      caption: 'Attended:',
-                      btnLoading: false,
-                      onTap: () {},
-                      showBtn: false,
-                      btnAlternativeText: 'Cyle completed',
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: screenWidth(context) / 2.5,
+                          child: Daycard(
+                            days: attendedDays,
+                            loading: viewModel.isBusy,
+                            btnText: 'Add',
+                            caption: 'Attended:',
+                            btnLoading: false,
+                            onTap: () {},
+                            showBtn: false,
+                            btnAlternativeText: 'Cyle completed',
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth(context) / 2.5,
+                          child: Daycard(
+                            days: holidays,
+                            loading: viewModel.isBusy,
+                            btnText: 'Add',
+                            caption: 'Holidays:',
+                            btnLoading: false,
+                            onTap: () {},
+                            showBtn: false,
+                            btnAlternativeText: 'Cyle completed',
+                            dayTextColor: Colors.red,
+                            isHoliday: true,
+                          ),
+                        ),
+                      ],
                     ),
                     verticalSpaceSmall,
                     !viewModel.isPaid
@@ -108,7 +133,13 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
                     verticalSpaceMedium,
                     SkeletonLoader(
                       loading: viewModel.isBusy,
-                      child: const Text('Attended dates'),
+                      child: const Text(
+                        'Attended dates',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     verticalSpaceSmall,
                     AttendedGrid(
@@ -118,7 +149,13 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
                     verticalSpaceMedium,
                     SkeletonLoader(
                       loading: viewModel.isBusy,
-                      child: const Text('Holidays'),
+                      child: const Text(
+                        'Holidays',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     verticalSpaceSmall,
                     AttendedGrid(

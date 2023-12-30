@@ -11,6 +11,7 @@ class ActiveCycleViewModel extends FutureViewModel<Cycle?> {
   final _snackbar = locator<SnackbarService>();
 
   bool _isAdding = false;
+  bool _isAddingHoliday = false;
   bool _isPaid = false;
   DateTime? _paidAt;
   bool _isPaying = false;
@@ -21,6 +22,7 @@ class ActiveCycleViewModel extends FutureViewModel<Cycle?> {
   List<DateTime> _holidays = List.empty();
 
   bool get isAdding => _isAdding;
+  bool get isAddingHoliday => _isAddingHoliday;
   bool get isPaid => _isPaid;
   DateTime? get paidAt => _paidAt;
   List<DateTime> get attendedDays => _attendedDays;
@@ -70,6 +72,51 @@ class ActiveCycleViewModel extends FutureViewModel<Cycle?> {
       duration: const Duration(seconds: 3),
     );
     _attendedDays = days;
+    notifyListeners();
+  }
+
+  Future<void> addHoliday() async {
+    _isAddingHoliday = true;
+    notifyListeners();
+    for (var i = _holidays.length - 1; i >= 0; i--) {
+      if (formatDate(_holidays[i]) == formatDate(DateTime.now())) {
+        _snackbar.registerSnackbarConfig(
+          SnackbarConfig(
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.black45,
+            borderRadius: 8,
+          ),
+        );
+        _snackbar.showSnackbar(
+          title: 'Already added',
+          message: 'Not needed now',
+          mainButtonTitle: 'Close',
+          onMainButtonTapped: _snackbar.closeSnackbar,
+          duration: const Duration(seconds: 3),
+        );
+        _isAddingHoliday = false;
+        return;
+      }
+    }
+    List<DateTime> days = List.from(_holidays);
+    days.add(DateTime.now());
+    await _store.addHoliday(days);
+    _isAddingHoliday = false;
+    _snackbar.registerSnackbarConfig(
+      SnackbarConfig(
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black45,
+        borderRadius: 8,
+      ),
+    );
+    _snackbar.showSnackbar(
+      title: 'Successful',
+      message: 'Holiday given',
+      mainButtonTitle: 'Close',
+      onMainButtonTapped: _snackbar.closeSnackbar,
+      duration: const Duration(seconds: 3),
+    );
+    _holidays = days;
     notifyListeners();
   }
 

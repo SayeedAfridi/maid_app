@@ -12,6 +12,7 @@ class Daycard extends StatelessWidget {
   final bool showBtn;
   final Color? dayTextColor;
   final String btnAlternativeText;
+  final bool? isHoliday;
 
   const Daycard({
     super.key,
@@ -24,6 +25,7 @@ class Daycard extends StatelessWidget {
     this.showBtn = true,
     this.dayTextColor,
     this.btnAlternativeText = '',
+    this.isHoliday = false,
   });
 
   @override
@@ -36,7 +38,12 @@ class Daycard extends StatelessWidget {
           children: [
             SkeletonLoader(
               loading: loading,
-              child: Text(caption),
+              child: Text(
+                caption,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,6 +81,11 @@ class Daycard extends StatelessWidget {
                       alignment: Alignment.center,
                       child: FilledButton(
                         onPressed: btnLoading ? () {} : onTap,
+                        style: ButtonStyle(
+                          backgroundColor: isHoliday == true
+                              ? MaterialStateProperty.all(Colors.red)
+                              : null,
+                        ),
                         child: btnLoading
                             ? const SizedBox(
                                 height: 20,

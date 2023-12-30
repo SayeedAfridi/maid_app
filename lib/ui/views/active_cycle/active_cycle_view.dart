@@ -17,6 +17,7 @@ class ActiveCycleView extends StackedView<ActiveCycleViewModel> {
     Widget? child,
   ) {
     int attendedDays = viewModel.attendedDays.length;
+    int holidays = viewModel.holidays.length;
     int daysUntilPayment =
         viewModel.totalCycleDays - viewModel.attendedDays.length;
 
@@ -57,15 +58,39 @@ class ActiveCycleView extends StackedView<ActiveCycleViewModel> {
                 ),
                 child: Column(
                   children: [
-                    Daycard(
-                      days: attendedDays,
-                      loading: viewModel.isBusy,
-                      btnText: 'Add Attendance',
-                      caption: 'Attended:',
-                      btnLoading: viewModel.isAdding,
-                      onTap: viewModel.addAttendance,
-                      showBtn: attendedDays < viewModel.totalCycleDays,
-                      btnAlternativeText: 'Cyle complete',
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: screenWidth(context) / 2.5,
+                          child: Daycard(
+                            days: attendedDays,
+                            loading: viewModel.isBusy,
+                            btnText: 'Add',
+                            caption: 'Attended:',
+                            btnLoading: viewModel.isAdding,
+                            onTap: viewModel.addAttendance,
+                            showBtn: attendedDays < viewModel.totalCycleDays,
+                            btnAlternativeText: 'Cyle completed',
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth(context) / 2.5,
+                          child: Daycard(
+                            days: holidays,
+                            loading: viewModel.isBusy,
+                            btnText: 'Add',
+                            caption: 'Holidays:',
+                            btnLoading: viewModel.isAddingHoliday,
+                            onTap: viewModel.addHoliday,
+                            showBtn: attendedDays < viewModel.totalCycleDays,
+                            btnAlternativeText: 'Cyle completed',
+                            dayTextColor: Colors.red,
+                            isHoliday: true,
+                          ),
+                        ),
+                      ],
                     ),
                     verticalSpaceSmall,
                     !viewModel.isPaid
@@ -106,7 +131,13 @@ class ActiveCycleView extends StackedView<ActiveCycleViewModel> {
                     verticalSpaceMedium,
                     SkeletonLoader(
                       loading: viewModel.isBusy,
-                      child: const Text('Attended dates'),
+                      child: const Text(
+                        'Attended dates',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     verticalSpaceSmall,
                     AttendedGrid(
@@ -116,8 +147,15 @@ class ActiveCycleView extends StackedView<ActiveCycleViewModel> {
                     verticalSpaceMedium,
                     SkeletonLoader(
                       loading: viewModel.isBusy,
-                      child: const Text('Holidays'),
+                      child: const Text(
+                        'Holidays',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
+                    verticalSpaceSmall,
                     AttendedGrid(
                       dates: viewModel.holidays,
                       loading: viewModel.isBusy,

@@ -65,6 +65,17 @@ class StoreService {
     }
   }
 
+  Future<void> addHoliday(List<DateTime> dates) async {
+    try {
+      final data = <String, dynamic>{
+        'holidays': const ListTimestampConverter().toJson(dates),
+      };
+      return _attendanceRef.doc(currentCycleName).update(data);
+    } catch (e) {
+      // TODO: add error handling
+    }
+  }
+
   Future<void> makePayment() async {
     try {
       final data = <String, dynamic>{
