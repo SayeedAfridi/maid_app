@@ -146,23 +146,29 @@ class CycleDetailsView extends StackedView<CycleDetailsViewModel> {
                       dates: viewModel.attendedDays,
                       loading: viewModel.isBusy,
                     ),
-                    verticalSpaceMedium,
-                    SkeletonLoader(
-                      loading: viewModel.isBusy,
-                      child: const Text(
-                        'Holidays',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    verticalSpaceSmall,
-                    AttendedGrid(
-                      dates: viewModel.holidays,
-                      loading: viewModel.isBusy,
-                      isHoliday: true,
-                    ),
+                    holidays > 0
+                        ? Column(
+                            children: [
+                              verticalSpaceMedium,
+                              SkeletonLoader(
+                                loading: viewModel.isBusy,
+                                child: const Text(
+                                  'Holidays',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              verticalSpaceSmall,
+                              AttendedGrid(
+                                dates: viewModel.holidays,
+                                loading: viewModel.isBusy,
+                                isHoliday: true,
+                              ),
+                            ],
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),
